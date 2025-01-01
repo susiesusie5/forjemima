@@ -161,13 +161,14 @@
         <h1>Happy 3 Months! 💕</h1>
         
         <div class="name-cycling">
-            To my Gala/Jemima/Ngela - the girl with many beautiful names <span class="sparkle">✨</span>
+            To my Jemima <span class="sparkle">✨</span>
         </div>
 
         <div class="game-container">
             <div id="game-start">
                 <h2>Ready for a Fun Challenge?</h2>
-                <p>Let's test your knowledge with some questions about us, our cities, and things you love!</p>
+                <p>Let's test your knowledge with some questions about us, our cities, and things you love! <br>
+                Every correct answer grants you an extra box of Astros 😉</p>
                 <button class="submit-btn" onclick="startGame()">Start Game</button>
             </div>
             
@@ -181,15 +182,19 @@
         </div>
 
         <div style="text-align: center; margin-top: 20px;">
-            <p>From philosophy debates to tennis matches,<br>
-            From hiking adventures to cooking experiments,<br>
-            Every moment with you makes life more beautiful! <span class="sparkle">🌟</span></p>
+            <p>From hiking adventures to lazy mornings in bed,<br>
+            Every moment with you makes life more beautiful <span class="sparkle">🌟</span></p>
         </div>
     </div>
 
     <script>
         // Previous JavaScript remains the same, just updating these functions:
         const questions = [
+            {
+                question: "What did we have for dinner on our second date?",
+                choices: ["Noodles", "Cheese and Tomato Sandwich", "Rice and Chicken", "Fruit"],
+                correct: 1
+            },
             {
                 question: "Which philosopher said 'The unexamined life is not worth living'?",
                 choices: ["Aristotle", "Socrates", "Plato", "Kant"],
@@ -205,30 +210,26 @@
                 choices: ["City of Gold", "Haven of Peace", "Pearl of Africa", "Gateway to Africa"],
                 correct: 1
             },
+            
             {
-                question: "Which famous beach is located in Dar es Salaam?",
-                choices: ["Zanzibar Beach", "Coco Beach", "Bondi Beach", "Copacabana"],
+                question: "What did I want to be when I was younger?",
+                choices: ["Maths Teacher", "Fashion Model", "Chef", "Farmer"],
+                correct: 2
+            },
+            {
+                question: "What's the worst queer movie I've ever seen?",
+                choices: ["Blue is the Warmest Colour", "Call Me by Your Name", "Moonlight", "Rafiki"],
                 correct: 1
             },
             {
-                question: "What name do I use when I'm pretending to be serious?",
-                choices: ["Gala", "Ngela", "Jemima", "None of these"],
+                question: "How long did our first proper text conversation last?",
+                choices: ["1 hour", "4 hours", "2.5 hours", "1.5 hours"],
                 correct: 2
             },
             {
-                question: "Which city did you study philosophy in?",
-                choices: ["Johannesburg", "Gaborone", "Dar es Salaam", "Cape Town"],
-                correct: 1
-            },
-            {
-                question: "Which famous tree lines many streets in Dar es Salaam?",
-                choices: ["Baobab", "Jacaranda", "Flame Tree", "Acacia"],
-                correct: 2
-            },
-            {
-                question: "What sport do you enjoy playing?",
-                choices: ["Basketball", "Soccer", "Tennis", "Volleyball"],
-                correct: 2
+                question: "What's my favourite thing about you?",
+                choices: ["Your smile", "Your intelligence", "Your voice", "All of the above"],
+                correct: 3
             }
         ];
 
