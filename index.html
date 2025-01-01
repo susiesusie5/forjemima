@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 3 Months, Gala! 💕</title>
+    <title>Happy 3 Months, Gala 💕</title>
     <!-- Adding Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Comic+Neue&display=swap" rel="stylesheet">
     <style>
@@ -161,15 +161,15 @@
         <h1>Happy 3 Months! 💕</h1>
         
         <div class="name-cycling">
-            To my Jemima <span class="sparkle">✨</span>
+            To my Jemima 🌸 <span class="sparkle">✨</span>
         </div>
 
         <div class="game-container">
             <div id="game-start">
-                <h2>Ready for a Fun Challenge?</h2>
+                <h2>Ready for a Fun Challenge? 🌿</h2>
                 <p>Let's test your knowledge with some questions about us! <br>
                 Every correct answer grants you an extra box of Astros 😉</p>
-                <button class="submit-btn" onclick="startGame()">Start Game</button>
+                <button class="submit-btn" onclick="startGame()">Start Game 🎮</button>
             </div>
             
             <div id="game-play" class="hidden">
@@ -302,11 +302,18 @@
         }
 
         function endGame() {
+            let message = "Game Complete! 🎉";
+            if (score === questions.length) {
+                message = "Perfect Score! You're amazing! 🌟";
+            } else if (score >= 6) {
+                message = "Fantastic job! 🌟";
+            }
+
             document.getElementById('game-play').innerHTML = `
-                <h2>Game Complete! 🎉</h2>
-                <p>You scored ${score} out of ${questions.length}!</p>
-                <p>Thank you for being such an amazing girlfriend! ❤️</p>
-                <button class="submit-btn" onclick="location.reload()">Play Again</button>
+                <h2>${message}</h2>
+                <p>You have just earned yourself ${score} boxes of Astros ma'am 😌</p>
+                <p>Thank you for being such an amazing girlfriend! 💝 Ke a go rata </p>
+                <button class="submit-btn" onclick="location.reload()">Play Again 🎮</button>
             `;
         }
     </script>
