@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 3 Months, Gala! 💕</title>
+    <!-- Adding Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Comic+Neue&display=swap" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e6f3ff;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(30, 144, 255, 0.2);
+            animation: fadeIn 1s ease-out;
+        }
+        h1 {
+            color: #1e90ff;
+            text-align: center;
+            font-size: 2.5em;
+            font-family: 'Comic Neue', cursive;
+            animation: float 3s ease-in-out infinite;
+        }
+        .game-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .game-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .choice-btn {
+            background: white;
+            color: #1e90ff;
+            border: 2px solid #1e90ff;
+            padding: 12px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            width: 100%;
+            transition: all 0.3s;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .choice-btn:hover {
+            background: #1e90ff;
+            color: white;
+            transform: scale(1.02);
+        }
+        .choice-btn.selected {
+            background: #1e90ff;
+            color: white;
+            animation: heartbeat 1s;
+        }
+        button.submit-btn {
+            background: #4169e1;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+            transition: all 0.3s;
+            font-family: 'Quicksand', sans-serif;
+        }
+        button.submit-btn:hover {
+            background: #1e90ff;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+        }
+        .name-cycling {
+            font-style: italic;
+            color: #4169e1;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+        .score {
+            text-align: center;
+            font-size: 1.2em;
+            color: #4169e1;
+            margin: 15px 0;
+        }
+        .choices-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        #feedback {
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.1em;
+            animation: fadeIn 0.5s;
+        }
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 2s infinite;
+        }
+        h2 {
+            color: #4169e1;
+            animation: fadeIn 0.5s;
+        }
+        
+        /* Correct answer animation */
+        @keyframes correct {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .correct {
+            animation: correct 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy 3 Months! 💕</h1>
+        
+        <div class="name-cycling">
+            To my Gala/Jemima/Ngela - the girl with many beautiful names <span class="sparkle">✨</span>
+        </div>
+
+        <div class="game-container">
+            <div id="game-start">
+                <h2>Ready for a Fun Challenge?</h2>
+                <p>Let's test your knowledge with some questions about us, our cities, and things you love!</p>
+                <button class="submit-btn" onclick="startGame()">Start Game</button>
+            </div>
+            
+            <div id="game-play" class="hidden">
+                <h2 id="question"></h2>
+                <div id="choices" class="choices-container"></div>
+                <button class="submit-btn" onclick="checkAnswer()">Submit Answer</button>
+                <p id="feedback" class="hidden"></p>
+                <div class="score">Score: <span id="score">0</span>/8</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <p>From philosophy debates to tennis matches,<br>
+            From hiking adventures to cooking experiments,<br>
+            Every moment with you makes life more beautiful! <span class="sparkle">🌟</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Previous JavaScript remains the same, just updating these functions:
+        const questions = [
+            {
+                question: "Which philosopher said 'The unexamined life is not worth living'?",
+                choices: ["Aristotle", "Socrates", "Plato", "Kant"],
+                correct: 1
+            },
+            {
+                question: "What's the highest point near Gaborone?",
+                choices: ["Kgale Hill", "Table Mountain", "Mount Kilimanjaro", "Otse Hill"],
+                correct: 0
+            },
+            {
+                question: "What's the famous nickname for Dar es Salaam?",
+                choices: ["City of Gold", "Haven of Peace", "Pearl of Africa", "Gateway to Africa"],
+                correct: 1
+            },
+            {
+                question: "Which famous beach is located in Dar es Salaam?",
+                choices: ["Zanzibar Beach", "Coco Beach", "Bondi Beach", "Copacabana"],
+                correct: 1
+            },
+            {
+                question: "What name do I use when I'm pretending to be serious?",
+                choices: ["Gala", "Ngela", "Jemima", "None of these"],
+                correct: 2
+            },
+            {
+                question: "Which city did you study philosophy in?",
+                choices: ["Johannesburg", "Gaborone", "Dar es Salaam", "Cape Town"],
+                correct: 1
+            },
+            {
+                question: "Which famous tree lines many streets in Dar es Salaam?",
+                choices: ["Baobab", "Jacaranda", "Flame Tree", "Acacia"],
+                correct: 2
+            },
+            {
+                question: "What sport do you enjoy playing?",
+                choices: ["Basketball", "Soccer", "Tennis", "Volleyball"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedChoice = null;
+
+        function startGame() {
+            document.getElementById('game-start').classList.add('hidden');
+            document.getElementById('game-play').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question').textContent = q.question;
+            
+            const choicesContainer = document.getElementById('choices');
+            choicesContainer.innerHTML = '';
+            q.choices.forEach((choice, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn';
+                btn.textContent = choice;
+                btn.onclick = () => selectChoice(index);
+                btn.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s`;
+                choicesContainer.appendChild(btn);
+            });
+            
+            document.getElementById('feedback').classList.add('hidden');
+            selectedChoice = null;
+        }
+
+        function selectChoice(index) {
+            selectedChoice = index;
+            document.querySelectorAll('.choice-btn').forEach((btn, i) => {
+                btn.classList.toggle('selected', i === index);
+            });
+        }
+
+        function checkAnswer() {
+            if (selectedChoice === null) {
+                alert('Please select an answer!');
+                return;
+            }
+            
+            const feedback = document.getElementById('feedback');
+            const correct = questions[currentQuestion].correct;
+            
+            if (selectedChoice === correct) {
+                score++;
+                document.getElementById('score').textContent = score;
+                feedback.textContent = "Correct! 🎉";
+                feedback.style.color = "#1e90ff";
+                feedback.classList.add('correct');
+            } else {
+                feedback.textContent = "Not quite! The correct answer was: " + 
+                    questions[currentQuestion].choices[correct];
+                feedback.style.color = "#4169e1";
+            }
+            feedback.classList.remove('hidden');
+            
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    endGame();
+                }
+            }, 2000);
+        }
+
+        function endGame() {
+            document.getElementById('game-play').innerHTML = `
+                <h2>Game Complete! 🎉</h2>
+                <p>You scored ${score} out of ${questions.length}!</p>
+                <p>Thank you for being such an amazing girlfriend! ❤️</p>
+                <button class="submit-btn" onclick="location.reload()">Play Again</button>
+            `;
+        }
+    </script>
+</body>
+</html>
